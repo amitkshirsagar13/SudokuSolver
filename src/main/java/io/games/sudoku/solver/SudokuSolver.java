@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.JComponent;
 import javax.swing.JTextField;
 
 import org.apache.log4j.Logger;
