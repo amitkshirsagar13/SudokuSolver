@@ -67,7 +67,7 @@ public class PuzzleCell {
 			break;
 		}
 		if (possibleValue.size() == 1) {
-			setCellValue(possibleValue.get(0));
+			setCellValue(possibleValue.getFirst());
 			SolveCounter.setInstanceContinue();
 		}
 	}
