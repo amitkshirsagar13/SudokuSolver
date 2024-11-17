@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import org.apache.log4j.Logger;
 
 import io.games.sudoku.solver.SudokuSolver;
+import io.games.sudoku.solverPro.SudokuPuzzlePro;
 import io.games.swings.base.UtilityBasePanel;
 
 public class SudokuUtilityPanel extends UtilityBasePanel {
@@ -43,29 +44,32 @@ public class SudokuUtilityPanel extends UtilityBasePanel {
 	protected void executeOK() {
 		log.info("Executing OK");
 		super.executeOK();
-		Set<String> keySet = _formComponents.keySet();
-		SudokuSolver sudokuSolver = new SudokuSolver();
-		for (String key : keySet) {
-			JTextField cell = (JTextField) _formComponents.get(key);
-			int i = Integer.parseInt(cell.getName().substring(1, 2));
-			int j = Integer.parseInt(cell.getName().substring(3, 4));
-			int cellValue = 0;
-			if (cell.getText() != null && !cell.getText().equals("")) {
-				cellValue = Integer.parseInt(cell.getText());
-				cell.setBackground(Color.BLUE);
-			}
-			sudokuSolver.initilizePuzzleParameter(i, j, cellValue, _formComponents);
+		// Set<String> keySet = _formComponents.keySet();
+		// SudokuSolver sudokuSolver = new SudokuSolver();
+		// for (String key : keySet) {
+		// 	JTextField cell = (JTextField) _formComponents.get(key);
+		// 	int i = Integer.parseInt(cell.getName().substring(1, 2));
+		// 	int j = Integer.parseInt(cell.getName().substring(3, 4));
+		// 	int cellValue = 0;
+		// 	if (cell.getText() != null && !cell.getText().equals("")) {
+		// 		cellValue = Integer.parseInt(cell.getText());
+		// 		cell.setBackground(Color.BLUE);
+		// 	}
+		// 	sudokuSolver.initilizePuzzleParameter(i, j, cellValue, _formComponents);
 
-		}
-		sudokuSolver.printPuzzle();
-		sudokuSolver.populatePuzzleMap();
-		try {
-			sudokuSolver.processPuzzle();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("Processed....");
+		// }
+		// sudokuSolver.printPuzzle();
+		// sudokuSolver.populatePuzzleMap();
+		// try {
+		// 	sudokuSolver.processPuzzle();
+		// } catch (InterruptedException e) {
+		// 	// TODO Auto-generated catch block
+		// 	e.printStackTrace();
+		// }
+		// System.out.println("Processed....");
 
+		SudokuPuzzlePro sudokuPuzzlePro = new SudokuPuzzlePro(_formComponents);
+		sudokuPuzzlePro.printPuzzle();
+		sudokuPuzzlePro.solve();
 	}
 }

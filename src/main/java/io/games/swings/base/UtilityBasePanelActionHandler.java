@@ -307,8 +307,10 @@ public class UtilityBasePanelActionHandler extends JPanel implements
 			jComponent = jComponent2;
 		}
 		jComponent.setName(formComponent.getComponentName());
-		jComponent.setToolTipText(formComponent.getComponentToolTip()
-				.toString());
+		String tooltip = formComponent.getComponentToolTip()
+		.toString().equals("") ? formComponent.getComponentName() : formComponent.getComponentToolTip()
+		.toString();
+		jComponent.setToolTipText(tooltip);
 		jComponent.setBounds(
 				Integer.parseInt(formComponent.getComponentXPos()),
 				Integer.parseInt(formComponent.getComponentYPos()), 30, 30);
