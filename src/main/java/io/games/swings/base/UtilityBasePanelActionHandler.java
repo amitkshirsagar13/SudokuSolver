@@ -38,6 +38,7 @@ public class UtilityBasePanelActionHandler extends JPanel implements
 		ItemListener {
 	static Logger log = Logger.getLogger(UtilityBasePanelActionHandler.class
 			.getName());
+	private List<String> DEFINED_ACTIONS = List.of("OK", "CANCEL", "RESET", "SUBMIT");
 
 	protected UtilityBaseFrame mainFrame = null;
 
@@ -148,27 +149,28 @@ public class UtilityBasePanelActionHandler extends JPanel implements
 	@Override
 	public void actionPerformed(final ActionEvent event) {
 		final String command = event.getActionCommand();
-		Runnable actionRunner = new Runnable() {
-
-			@Override
-			public void run() {
-				if (command.equalsIgnoreCase(OK)) {
-					executeOK();
-				} else if (command.equalsIgnoreCase(SUBMIT)) {
-					executeSubmit();
-				} else if (command.equalsIgnoreCase(CANCEL)) {
-					executeCancel();
-				} else if (command.equalsIgnoreCase(RESET)) {
-					executeReset();
-				} else {
-					executeNoActionMessage(event);
+		if (DEFINED_ACTIONS.contains(command)) {
+			Runnable actionRunner = new Runnable() {
+				@Override
+				public void run() {
+					if (command.equalsIgnoreCase(OK)) {
+						executeOK();
+					} else if (command.equalsIgnoreCase(SUBMIT)) {
+						executeSubmit();
+					} else if (command.equalsIgnoreCase(CANCEL)) {
+						executeCancel();
+					} else if (command.equalsIgnoreCase(RESET)) {
+						executeReset();
+					} else {
+						executeNoActionMessage(event);
+					}
 				}
-			}
-		};
-
-		Thread actionThread = new Thread(actionRunner, event.getSource()
-				.toString());
-		actionThread.start();
+			};
+	
+			Thread actionThread = new Thread(actionRunner, event.getSource()
+					.toString());
+			actionThread.start();
+		}
 	}
 
 	/**

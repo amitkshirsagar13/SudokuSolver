@@ -27,10 +27,20 @@ public class SudokuPuzzlePro {
         int iteration = 0;
         while (canContinue) {
             canContinue = false;
+            System.out.println("Reducing by values");
             for (PuzzleCellPro cell : cellList) {
-                boolean isReduced = cell.reducePossibles(cellList);
+                boolean isReduced = cell.reducePossiblesByValues(cellList);
                 if (!canContinue && isReduced) {
                     canContinue = isReduced;
+                }
+            }
+            if (!canContinue) {
+                System.out.println("Reducing by possibles");
+                for (PuzzleCellPro cell : cellList) {
+                    boolean isReduced = cell.reducePossiblesByPossibles(cellList);
+                    if (!canContinue && isReduced) {
+                        canContinue = isReduced;
+                    }
                 }
             }
             iteration++;

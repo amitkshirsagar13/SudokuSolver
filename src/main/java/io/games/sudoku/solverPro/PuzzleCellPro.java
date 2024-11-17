@@ -24,6 +24,9 @@ public class PuzzleCellPro {
         this.col = col;
         setSection();
         String iValue = this.cell.getText();
+        if (iValue.equals("0")) {
+            this.cell.setText("");
+        }
         this.cell.setHorizontalAlignment(JTextField.CENTER);
         isSolved = !iValue.isEmpty();
         if (isSolved) {
@@ -46,7 +49,7 @@ public class PuzzleCellPro {
         return Integer.valueOf(cell.getText());
     }
 
-    public boolean reducePossibles(List<PuzzleCellPro> puzzleCells) {
+    public boolean reducePossiblesByValues(List<PuzzleCellPro> puzzleCells) {
         if (isSolved) {
             return false;
         }
@@ -84,6 +87,53 @@ public class PuzzleCellPro {
         return possibles.size() < possiblesCount;
     }
 
+    public boolean reducePossiblesByPossibles(List<PuzzleCellPro> puzzleCells) {
+        if (isSolved) {
+            return false;
+        }
+        
+        int possiblesCount = possibles.size();
+
+        // resolve row possibles
+        final int groupLimitRow = getGroupLimit(row);
+        List<PuzzleCellPro> rowGroup = puzzleCells.stream()
+            .filter(p -> (p.getRow() >= groupLimitRow - 3 || p.getRow() < groupLimitRow) && p.row != row)
+            .toList();
+        List<Integer> otherPossibles = rowGroup.stream().filter(p -> !p.isSolved).map(p -> p.possibles).flatMap(List::stream).distinct().toList();
+        possibles.removeAll(otherPossibles);
+
+        // resolve col possibles
+        final int groupLimitCol = getGroupLimit(col);
+        List<PuzzleCellPro> colGroup = puzzleCells.stream()
+            .filter(p -> (p.getCol() >= groupLimitCol - 3 || p.getCol() < groupLimitCol) && p.col != col)
+            .toList();
+        otherPossibles = colGroup.stream().filter(p -> !p.isSolved).map(p -> p.possibles).flatMap(List::stream).distinct().toList();
+        possibles.removeAll(otherPossibles);
+        
+        // resolve section possibles
+        final int groupLimitSection = getGroupLimit(section);
+        List<PuzzleCellPro> sectionGroup = puzzleCells.stream()
+            .filter(p -> (p.getSection() >= groupLimitSection - 3 || p.getSection() < groupLimitSection) && p.section != section)
+            .toList();
+        otherPossibles = sectionGroup.stream().filter(p -> !p.isSolved).map(p -> p.possibles).flatMap(List::stream).distinct().toList();
+        possibles.removeAll(otherPossibles);
+        
+        if (possibles.size() == 1) {
+            setValue(possibles.get(0));
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                System.out.println("Interrupted");
+            }
+            this.cell.setBackground(java.awt.Color.BLUE);
+        }    
+
+        return possibles.size() < possiblesCount;
+    }
+
+    public int getGroupLimit(int value) {
+        return value < 3 ? 3 : value < 6 ? 6 : 9;
+    }
     private void setSection() {
         if (row < 3 && col < 3) {
             section = 1;

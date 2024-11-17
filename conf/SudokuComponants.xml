@@ -17,6 +17,10 @@
 				buttonListeners="ActionListener|MouseListener">
 				<buttonToolTip>CANCEL button</buttonToolTip>
 			</button>
+			<button buttonName="RESOLVE" buttonAction="RESOLVE"
+				buttonListeners="ActionListener|MouseListener">
+				<buttonToolTip>RESOLVE button</buttonToolTip>
+			</button>
 		</panel>
 		<panel panelName="CaseSignal" subPanelName="FormPanel">
 			<formComponent componentType="JLabel" componentName="PhraseNameLabel"
@@ -503,6 +507,9 @@
 			</button>
 			<button buttonName="CANCEL" buttonAction="CANCEL">
 				<buttonToolTip>CANCEL button</buttonToolTip>
+			</button>
+			<button buttonName="RESOLVE" buttonAction="RESOLVE">
+				<buttonToolTip>RESOLVE button</buttonToolTip>
 			</button>
 		</panel>
 	</frame>

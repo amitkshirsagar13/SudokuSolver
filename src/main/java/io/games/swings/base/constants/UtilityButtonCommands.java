@@ -14,5 +14,4 @@ public interface UtilityButtonCommands {
 	String CANCEL = "CANCEL";
 	String ADD = "Add";
 	String REMOVE = "Remove";
-
 }
