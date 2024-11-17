@@ -17,6 +17,7 @@ public class SudokuPuzzle {
 	HashMap<String, JComponent> formComponents = null;
 
 	public void initilizePuzzleParameter(int i, int j, int cellValue, HashMap<String, JComponent> formComponents) {
+		log.info("Initializing PuzzleCell");
 		if (puzzleCell[i][j] == null) {
 			puzzleCell[i][j] = new PuzzleCell();
 		}

@@ -16,6 +16,7 @@ public class MySudokuSolver {
 	static Logger log = Logger.getLogger(MySudokuSolver.class.getName());
 
 	public static void main(String[] args) {
+		log.info("Starting MySudokuSolver");
 		MySudokuSolver myUtilityApplication = new MySudokuSolver();
 		myUtilityApplication.initiateFrame();
 	}
@@ -25,6 +26,7 @@ public class MySudokuSolver {
 			myApplicationFrame.setTitle("MySudokuSolver");
 			myApplicationFrame.buildFrame();
 			myApplicationFrame.setVisible(true);
+			log.info("Added MySudokuSolver to the frame");
 
 			SudokuUtilityPanel loginBasePanel = new SudokuUtilityPanel();
 			loginBasePanel.buildPanel("SudokuPanel");

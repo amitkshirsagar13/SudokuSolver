@@ -41,6 +41,7 @@ public class SudokuUtilityPanel extends UtilityBasePanel {
 	 */
 	@Override
 	protected void executeOK() {
+		log.info("Executing OK");
 		super.executeOK();
 		Set<String> keySet = _formComponents.keySet();
 		SudokuSolver sudokuSolver = new SudokuSolver();

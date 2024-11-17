@@ -23,6 +23,7 @@ public class SudokuSolver extends SudokuPuzzle {
 	HashMap<String, List<PuzzleCell>> sectionMap = new HashMap<String, List<PuzzleCell>>();
 
 	public void populateSectionMap() {
+		log.info("Populating Section Map");
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				if (!sectionMap.containsKey(puzzleCell[i][j].getSection())) {
@@ -39,6 +40,7 @@ public class SudokuSolver extends SudokuPuzzle {
 	}
 
 	public void processSection() {
+		log.info("Processing Section");
 		Set<String> keySet = sectionMap.keySet();
 		for (String key : keySet) {
 			List<PuzzleCell> sectionList = sectionMap.get(key);
@@ -58,6 +60,7 @@ public class SudokuSolver extends SudokuPuzzle {
 	HashMap<String, List<PuzzleCell>> rowMap = new HashMap<String, List<PuzzleCell>>();
 
 	public void populateRowMap() {
+		log.info("Populating Row Map");
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				if (!rowMap.containsKey(puzzleCell[i][j].getRow() + "")) {
@@ -74,6 +77,7 @@ public class SudokuSolver extends SudokuPuzzle {
 	}
 
 	public void processRow() {
+		log.info("Processing Row");
 		Set<String> keySet = rowMap.keySet();
 		for (String key : keySet) {
 			List<PuzzleCell> rowList = rowMap.get(key);
@@ -93,6 +97,7 @@ public class SudokuSolver extends SudokuPuzzle {
 	HashMap<String, List<PuzzleCell>> columnMap = new HashMap<String, List<PuzzleCell>>();
 
 	public void populateColumnMap() {
+		log.info("Populating Column Map");
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				if (!columnMap.containsKey(puzzleCell[i][j].getColumn() + "")) {
@@ -109,6 +114,7 @@ public class SudokuSolver extends SudokuPuzzle {
 	}
 
 	public void processColumn() {
+		log.info("Processing Column");
 		Set<String> keySet = columnMap.keySet();
 		for (String key : keySet) {
 			List<PuzzleCell> columnList = columnMap.get(key);
@@ -126,12 +132,14 @@ public class SudokuSolver extends SudokuPuzzle {
 	}
 
 	public void populatePuzzleMap() {
+		log.info("Populating Puzzle Map");
 		populateSectionMap();
 		populateRowMap();
 		populateColumnMap();
 	}
 
 	public void processPuzzle() throws InterruptedException {
+		log.info("Processing Puzzle");
 		while (SolveCounter.isInstanceContinue()) {
 			SolveCounter.setInstanceStop();
 			processSection();
@@ -145,6 +153,7 @@ public class SudokuSolver extends SudokuPuzzle {
 	}
 
 	public void printPuzzle() {
+		log.info("Printing Puzzle");
 		for (int i = 0; i < 9; i++) {
 			System.out.print("\t");
 			for (int j = 0; j < 9; j++) {
