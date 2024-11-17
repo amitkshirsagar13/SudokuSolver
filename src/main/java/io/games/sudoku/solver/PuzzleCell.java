@@ -47,7 +47,6 @@ public class PuzzleCell {
 	boolean isSolved = false;
 
 	/**
-	 * @param isSolved
 	 *            the isSolved to set
 	 */
 	public void setSolved() {
