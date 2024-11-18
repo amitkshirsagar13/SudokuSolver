@@ -82,6 +82,8 @@ public class PuzzleCellPro {
                 System.out.println("Interrupted");
             }
             this.cell.setBackground(java.awt.Color.BLUE);
+        } else {
+            System.out.println("By Value ["+ row + "," + col +"]" + "possibles: " + possibles);
         }
 
         return possibles.size() < possiblesCount;
@@ -91,43 +93,76 @@ public class PuzzleCellPro {
         if (isSolved) {
             return false;
         }
-        
-        int possiblesCount = possibles.size();
+        boolean canContinue = false;
 
         // resolve row possibles
         final int groupLimitRow = getGroupLimit(row);
         List<PuzzleCellPro> rowGroup = puzzleCells.stream()
-            .filter(p -> (p.getRow() >= groupLimitRow - 3 || p.getRow() < groupLimitRow) && p.row != row && p.section != section)
+            .filter(p -> (p.getRow() >= groupLimitRow - 3 || p.getRow() < groupLimitRow) && p.index != index)
             .toList();
-        List<Integer> otherPossibles = rowGroup.stream().filter(p -> !p.isSolved).map(p -> p.possibles).flatMap(List::stream).distinct().toList();
-        possibles.removeAll(otherPossibles);
+        final List<Integer> rowPossibles = rowGroup.stream().map(p -> {
+            return p.isSolved() ? List.of(p.getValue()) : p.possibles;
+        }).flatMap(List::stream).distinct().toList();
 
-        // resolve col possibles
-        final int groupLimitCol = getGroupLimit(col);
-        List<PuzzleCellPro> colGroup = puzzleCells.stream()
-            .filter(p -> (p.getCol() >= groupLimitCol - 3 || p.getCol() < groupLimitCol) && p.col != col && p.section != section)
-            .toList();
-        otherPossibles = colGroup.stream().filter(p -> !p.isSolved).map(p -> p.possibles).flatMap(List::stream).distinct().toList();
-        possibles.removeAll(otherPossibles);
-        
-        // resolve section possibles
-        List<PuzzleCellPro> sectionGroup = puzzleCells.stream()
-            .filter(p -> p.section == section && p.row != row && p.col != col)
-            .toList();
-        otherPossibles = sectionGroup.stream().filter(p -> !p.isSolved).map(p -> p.possibles).flatMap(List::stream).distinct().toList();
-        possibles.removeAll(otherPossibles);
-        
-        if (possibles.size() == 1) {
-            setValue(possibles.get(0));
+        List<Integer> validPossibles = possibles.stream().filter((p)->  !rowPossibles.contains(p)).toList();
+
+        if (validPossibles.size() == 1) {
+            setValue(validPossibles.get(0));
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
                 System.out.println("Interrupted");
             }
             this.cell.setBackground(java.awt.Color.BLUE);
-        }    
+            canContinue = true;
+        }
 
-        return possibles.size() < possiblesCount;
+        // resolve col possibles
+        final int groupLimitCol = getGroupLimit(col);
+        List<PuzzleCellPro> colGroup = puzzleCells.stream()
+        .filter(p -> (p.getCol() >= groupLimitCol - 3 || p.getCol() < groupLimitCol) && p.index != index)
+        .toList();
+        final List<Integer> colPossibles = colGroup.stream().map(p -> {
+            return p.isSolved() ? List.of(p.getValue()) : p.possibles;
+        }).flatMap(List::stream).distinct().toList();
+        validPossibles = possibles.stream().filter((p)->  !colPossibles.contains(p)).toList();
+        
+        if (validPossibles.size() == 1) {
+            setValue(validPossibles.get(0));
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                System.out.println("Interrupted");
+            }
+            this.cell.setBackground(java.awt.Color.BLUE);
+            canContinue = true;
+        }
+
+        // resolve section possibles
+        List<PuzzleCellPro> sectionGroup = puzzleCells.stream()
+            .filter(p -> p.section == section && p.index != index)
+            .toList();
+        final List<Integer> sectionPossibles = sectionGroup.stream().map(p -> {
+            return p.isSolved() ? List.of(p.getValue()) : p.possibles;
+        }).flatMap(List::stream).distinct().toList();
+        validPossibles = possibles.stream().filter((p)->  !sectionPossibles.contains(p)).toList();
+        
+        if (validPossibles.size() == 1) {
+            setValue(validPossibles.get(0));
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                System.out.println("Interrupted");
+            }
+            this.cell.setBackground(java.awt.Color.BLUE);
+            canContinue = true;
+        }
+
+        if (!canContinue) {
+            System.out.println("By Possibles ["+ row + "," + col +"]" + "possibles: " + possibles);
+        }
+        
+        return canContinue;
     }
 
     public int getGroupLimit(int value) {
