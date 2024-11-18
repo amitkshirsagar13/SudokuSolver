@@ -97,7 +97,7 @@ public class PuzzleCellPro {
         // resolve row possibles
         final int groupLimitRow = getGroupLimit(row);
         List<PuzzleCellPro> rowGroup = puzzleCells.stream()
-            .filter(p -> (p.getRow() >= groupLimitRow - 3 || p.getRow() < groupLimitRow) && p.row != row)
+            .filter(p -> (p.getRow() >= groupLimitRow - 3 || p.getRow() < groupLimitRow) && p.row != row && p.section != section)
             .toList();
         List<Integer> otherPossibles = rowGroup.stream().filter(p -> !p.isSolved).map(p -> p.possibles).flatMap(List::stream).distinct().toList();
         possibles.removeAll(otherPossibles);
@@ -105,15 +105,14 @@ public class PuzzleCellPro {
         // resolve col possibles
         final int groupLimitCol = getGroupLimit(col);
         List<PuzzleCellPro> colGroup = puzzleCells.stream()
-            .filter(p -> (p.getCol() >= groupLimitCol - 3 || p.getCol() < groupLimitCol) && p.col != col)
+            .filter(p -> (p.getCol() >= groupLimitCol - 3 || p.getCol() < groupLimitCol) && p.col != col && p.section != section)
             .toList();
         otherPossibles = colGroup.stream().filter(p -> !p.isSolved).map(p -> p.possibles).flatMap(List::stream).distinct().toList();
         possibles.removeAll(otherPossibles);
         
         // resolve section possibles
-        final int groupLimitSection = getGroupLimit(section);
         List<PuzzleCellPro> sectionGroup = puzzleCells.stream()
-            .filter(p -> (p.getSection() >= groupLimitSection - 3 || p.getSection() < groupLimitSection) && p.section != section)
+            .filter(p -> p.section == section && p.row != row && p.col != col)
             .toList();
         otherPossibles = sectionGroup.stream().filter(p -> !p.isSolved).map(p -> p.possibles).flatMap(List::stream).distinct().toList();
         possibles.removeAll(otherPossibles);

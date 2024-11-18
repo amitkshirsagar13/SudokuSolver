@@ -51,7 +51,7 @@ public class UtilityBasePanelActionHandler extends JPanel implements
 
 	/**
 	 * @param _mainFrame
-	 *            the _mainFrame to set
+	 *                   the _mainFrame to set
 	 */
 	public void setMainFrame(UtilityBaseFrame _mainFrame) {
 		mainFrame = _mainFrame;
@@ -166,7 +166,7 @@ public class UtilityBasePanelActionHandler extends JPanel implements
 					}
 				}
 			};
-	
+
 			Thread actionThread = new Thread(actionRunner, event.getSource()
 					.toString());
 			actionThread.start();
@@ -283,6 +283,7 @@ public class UtilityBasePanelActionHandler extends JPanel implements
 		JComponent jComponent = null;
 		if (formComponent.getComponentType().equalsIgnoreCase("JTextField")) {
 			jComponent = new JTextField(formComponent.getComponentName());
+			((JTextField) jComponent).setText("");
 			if (formComponent.getComponentDisabled() != null
 					&& formComponent.getComponentDisabled().equalsIgnoreCase(
 							"Disabled")) {
@@ -298,6 +299,9 @@ public class UtilityBasePanelActionHandler extends JPanel implements
 					jComponent.addMouseListener(this);
 				}
 			}
+			if (formComponent.getComponentValue() != null) {
+				((JTextField) jComponent).setText(formComponent.getComponentValue());
+			}
 		} else if (formComponent.getComponentType().equalsIgnoreCase("JLabel")) {
 			jComponent = new JLabel(formComponent.getComponentToolTip()
 					.toString());
@@ -310,8 +314,9 @@ public class UtilityBasePanelActionHandler extends JPanel implements
 		}
 		jComponent.setName(formComponent.getComponentName());
 		String tooltip = formComponent.getComponentToolTip()
-		.toString().equals("") ? formComponent.getComponentName() : formComponent.getComponentToolTip()
-		.toString();
+				.toString().equals("") ? formComponent.getComponentName()
+						: formComponent.getComponentToolTip()
+								.toString();
 		jComponent.setToolTipText(tooltip);
 		jComponent.setBounds(
 				Integer.parseInt(formComponent.getComponentXPos()),

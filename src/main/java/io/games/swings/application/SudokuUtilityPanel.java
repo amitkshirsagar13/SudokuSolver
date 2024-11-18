@@ -34,10 +34,6 @@ public class SudokuUtilityPanel extends UtilityBasePanel {
 	@Override
 	protected void populateCenterPanel() {
 		super.populateCenterPanel();
-		Set<String> keySet = _formComponents.keySet();
-		for (String key : keySet) {
-			((JTextField) _formComponents.get(key)).setText("");
-		}
 	}
 
 	/*

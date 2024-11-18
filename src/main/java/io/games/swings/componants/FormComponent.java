@@ -64,6 +64,8 @@ public class FormComponent {
     protected String componentDisabled;
     @XmlAttribute
     protected String componentListeners;
+    @XmlAttribute
+    protected String componentValue;
 
     /**
      * Gets the value of the componentToolTip property.
@@ -279,6 +281,30 @@ public class FormComponent {
      */
     public void setComponentListeners(String value) {
         this.componentListeners = value;
+    }
+
+    /**
+     * Gets the value of the componentValue property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getComponentValue() {
+        return componentValue;
+    }
+
+    /**
+     * Sets the value of the componentValue property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setComponentValue(String value) {
+        this.componentValue = value;
     }
 
 }
