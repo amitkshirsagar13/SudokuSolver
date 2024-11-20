@@ -1,5 +1,7 @@
 package io.games.swings.base;
 
+import java.awt.Dimension;
+
 /**
  * ProjectName: MyUtilityBase
  * @author amit_kshirsagar
@@ -24,7 +26,9 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import org.apache.log4j.Logger;
@@ -279,6 +283,7 @@ public class UtilityBasePanelActionHandler extends JPanel implements
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public JComponent prepareFormComponent(FormComponent formComponent) {
 		JComponent jComponent = null;
 		if (formComponent.getComponentType().equalsIgnoreCase("JTextField")) {
@@ -302,25 +307,34 @@ public class UtilityBasePanelActionHandler extends JPanel implements
 			if (formComponent.getComponentValue() != null) {
 				((JTextField) jComponent).setText(formComponent.getComponentValue());
 			}
+			jComponent.setBounds(
+					Integer.parseInt(formComponent.getComponentXPos()),
+					Integer.parseInt(formComponent.getComponentYPos()), 30, 30);
 		} else if (formComponent.getComponentType().equalsIgnoreCase("JLabel")) {
 			jComponent = new JLabel(formComponent.getComponentToolTip()
 					.toString());
 
 		} else if (formComponent.getComponentType().equalsIgnoreCase(
 				"JComboBox")) {
-			JComboBox jComponent2 = new JComboBox();
-			jComponent2.addItemListener(this);
-			jComponent = jComponent2;
+			jComponent = new JComboBox<String>();
+			((JComboBox<String>)jComponent).addItemListener(this);
+		} else if (formComponent.getComponentType().equalsIgnoreCase(
+			"JSeparator")) {
+			jComponent = new JSeparator();
+			jComponent.setSize(5, 500);
+			((JSeparator)jComponent).setOrientation(SwingConstants.HORIZONTAL);
+			jComponent.setBounds(
+					Integer.parseInt(formComponent.getComponentXPos()),
+					Integer.parseInt(formComponent.getComponentYPos()), 430, 5);
 		}
 		jComponent.setName(formComponent.getComponentName());
-		String tooltip = formComponent.getComponentToolTip()
-				.toString().equals("") ? formComponent.getComponentName()
-						: formComponent.getComponentToolTip()
-								.toString();
-		jComponent.setToolTipText(tooltip);
-		jComponent.setBounds(
-				Integer.parseInt(formComponent.getComponentXPos()),
-				Integer.parseInt(formComponent.getComponentYPos()), 30, 30);
+		if (jComponent instanceof JTextField || jComponent instanceof JComboBox || jComponent instanceof JLabel) {
+			String tooltip = formComponent.getComponentToolTip()
+			.toString().equals("") ? formComponent.getComponentName()
+					: formComponent.getComponentToolTip()
+							.toString();
+			jComponent.setToolTipText(tooltip);
+		}
 		return jComponent;
 	}
 

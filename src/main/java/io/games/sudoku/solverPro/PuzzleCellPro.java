@@ -46,7 +46,7 @@ public class PuzzleCellPro {
     }
 
     public int getValue() {
-        return Integer.valueOf(cell.getText());
+        return cell.getText().equals("") ? 0 : Integer.valueOf(cell.getText());
     }
 
     public boolean reducePossiblesByValues(List<PuzzleCellPro> puzzleCells) {

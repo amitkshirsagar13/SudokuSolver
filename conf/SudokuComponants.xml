@@ -577,6 +577,64 @@
 				<componentToolTip />
 			</formComponent>
 
+			<formComponent componentType="JSeparator"
+				componentName="s1" componentXPos="50" componentYPos="500">
+			</formComponent>
+
+			<formComponent componentType="JTextField"
+				componentName="i8j0" componentListeners="MouseListener"
+				componentValue="3"
+				componentXPos="50" componentYPos="450">
+				<componentToolTip />
+			</formComponent>
+			<formComponent componentType="JTextField"
+				componentName="i8j1" componentListeners="MouseListener"
+				componentValue="5"
+				componentXPos="100" componentYPos="450">
+				<componentToolTip />
+			</formComponent>
+			<formComponent componentType="JTextField"
+				componentName="i8j2" componentListeners="MouseListener"
+				componentValue="0"
+				componentXPos="150" componentYPos="450">
+				<componentToolTip />
+			</formComponent>
+			<formComponent componentType="JTextField"
+				componentName="i8j3" componentListeners="MouseListener"
+				componentValue="0"
+				componentXPos="200" componentYPos="450">
+				<componentToolTip />
+			</formComponent>
+			<formComponent componentType="JTextField"
+				componentName="i8j4" componentListeners="MouseListener"
+				componentValue="8"
+				componentXPos="250" componentYPos="450">
+				<componentToolTip />
+			</formComponent>
+			<formComponent componentType="JTextField"
+				componentName="i8j5" componentListeners="MouseListener"
+				componentValue="6"
+				componentXPos="300" componentYPos="450">
+				<componentToolTip />
+			</formComponent>
+			<formComponent componentType="JTextField"
+				componentName="i8j6" componentListeners="MouseListener"
+				componentValue="0"
+				componentXPos="350" componentYPos="450">
+				<componentToolTip />
+			</formComponent>
+			<formComponent componentType="JTextField"
+				componentName="i8j7" componentListeners="MouseListener"
+				componentValue="0"
+				componentXPos="400" componentYPos="450">
+				<componentToolTip />
+			</formComponent>
+			<formComponent componentType="JTextField"
+				componentName="i8j8" componentListeners="MouseListener"
+				componentValue="0"
+				componentXPos="450" componentYPos="450">
+				<componentToolTip />
+			</formComponent>
 
 		</panel>
 		<panel panelName="SudokuPanel" subPanelName="ButtonPanel">

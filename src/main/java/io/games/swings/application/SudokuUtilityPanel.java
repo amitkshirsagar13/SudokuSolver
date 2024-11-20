@@ -69,7 +69,7 @@ public class SudokuUtilityPanel extends UtilityBasePanel {
 		// }
 		// System.out.println("Processed....");
 
-		SudokuPuzzlePro sudokuPuzzlePro = new SudokuPuzzlePro(_formComponents);
+		SudokuPuzzlePro sudokuPuzzlePro = new SudokuPuzzlePro(_formComponents, this.statusPanel);
 		sudokuPuzzlePro.printPuzzle();
 		sudokuPuzzlePro.solve();
 	}

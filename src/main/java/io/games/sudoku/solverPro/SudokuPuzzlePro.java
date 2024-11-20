@@ -7,11 +7,14 @@ import java.util.logging.Logger;
 
 import javax.swing.JComponent;
 
+import io.games.swings.base.UtilityStatusPanel;
+
 public class SudokuPuzzlePro {
     static Logger log = Logger.getLogger(SudokuPuzzlePro.class.getName());
     private List<PuzzleCellPro> cellList;
-
-    public SudokuPuzzlePro(HashMap<String, JComponent> formComponents) {
+    private UtilityStatusPanel statusPanel;
+    
+    public SudokuPuzzlePro(HashMap<String, JComponent> formComponents, UtilityStatusPanel statusPanel) {
         cellList = new ArrayList<>();
         int i = 0;
         for (int row=0; row<9; row++) {
@@ -20,6 +23,7 @@ public class SudokuPuzzlePro {
                 i++;
             }
         }
+        this.statusPanel = statusPanel;
     }
 
     public void solve() {
@@ -67,6 +71,8 @@ public class SudokuPuzzlePro {
 
             }
         }
+        int solvedCount = (int)cellList.stream().filter(p->p.isSolved()).count();
+        statusPanel.setProgressStatus((int)((double)solvedCount/81 * 100), "Solved: " + solvedCount+"/81");
         System.out.println("=========================================");
     }
 }
