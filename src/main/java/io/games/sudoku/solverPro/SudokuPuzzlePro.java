@@ -95,6 +95,9 @@ public class SudokuPuzzlePro {
         });
         countMap.forEach((key, value)-> {
             JTextField textField = (JTextField)this.formComponents.get(key+"s");
+            if (textField == null) {
+                return;
+            }
             textField.setText(value+"");
             if (value == 9) {
                 textField.setBackground(java.awt.Color.GREEN);
