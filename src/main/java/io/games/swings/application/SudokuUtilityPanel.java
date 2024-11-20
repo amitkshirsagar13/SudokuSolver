@@ -34,6 +34,13 @@ public class SudokuUtilityPanel extends UtilityBasePanel {
 	@Override
 	protected void populateCenterPanel() {
 		super.populateCenterPanel();
+		this._formComponents.values().stream().filter(p-> p instanceof JTextField).forEach(p-> {
+			String name = p.getName();
+			if (name.endsWith("s")) {
+				JTextField cell = (JTextField) p;
+				cell.setText(0 + "");
+			}
+		});
 	}
 
 	/*
@@ -70,6 +77,7 @@ public class SudokuUtilityPanel extends UtilityBasePanel {
 		// System.out.println("Processed....");
 
 		SudokuPuzzlePro sudokuPuzzlePro = new SudokuPuzzlePro(_formComponents, this.statusPanel);
+		sudokuPuzzlePro.setStats();
 		sudokuPuzzlePro.printPuzzle();
 		sudokuPuzzlePro.solve();
 	}
@@ -77,9 +85,11 @@ public class SudokuUtilityPanel extends UtilityBasePanel {
 	@Override
 	protected void executeReset() {
 		_formComponents.values().stream().forEach(p -> {
-			JTextField pt = ((JTextField) p);
-			pt.setText("");
-			pt.setBackground(Color.WHITE);
+			if (p instanceof JTextField) {
+				JTextField pt = ((JTextField) p);
+				pt.setText("");
+				pt.setBackground(Color.WHITE);
+			}
 		});
 	}
 

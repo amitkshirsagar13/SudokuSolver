@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <application>
 	<frame>
 		<panel panelName="TOOLBARPANEL" subPanelName="ButtonPanel">
@@ -131,7 +130,6 @@
 				componentXPos="450" componentYPos="50">
 				<componentToolTip />
 			</formComponent>
-
 			<formComponent componentType="JTextField"
 				componentName="i1j0" componentListeners="MouseListener"
 				componentValue="0"
@@ -186,7 +184,6 @@
 				componentXPos="450" componentYPos="100">
 				<componentToolTip />
 			</formComponent>
-
 			<formComponent componentType="JTextField"
 				componentName="i2j0" componentListeners="MouseListener"
 				componentValue="0"
@@ -241,7 +238,6 @@
 				componentXPos="450" componentYPos="150">
 				<componentToolTip />
 			</formComponent>
-
 			<formComponent componentType="JTextField"
 				componentName="i3j0" componentListeners="MouseListener"
 				componentValue="0"
@@ -296,8 +292,6 @@
 				componentXPos="450" componentYPos="200">
 				<componentToolTip />
 			</formComponent>
-
-
 			<formComponent componentType="JTextField"
 				componentName="i4j0" componentListeners="MouseListener"
 				componentValue="4"
@@ -352,8 +346,6 @@
 				componentXPos="450" componentYPos="250">
 				<componentToolTip />
 			</formComponent>
-
-
 			<formComponent componentType="JTextField"
 				componentName="i5j0" componentListeners="MouseListener"
 				componentValue="8"
@@ -408,8 +400,6 @@
 				componentXPos="450" componentYPos="300">
 				<componentToolTip />
 			</formComponent>
-
-
 			<formComponent componentType="JTextField"
 				componentName="i6j0" componentListeners="MouseListener"
 				componentValue="2"
@@ -464,8 +454,6 @@
 				componentXPos="450" componentYPos="350">
 				<componentToolTip />
 			</formComponent>
-
-
 			<formComponent componentType="JTextField"
 				componentName="i7j0" componentListeners="MouseListener"
 				componentValue="0"
@@ -520,8 +508,6 @@
 				componentXPos="450" componentYPos="400">
 				<componentToolTip />
 			</formComponent>
-
-
 			<formComponent componentType="JTextField"
 				componentName="i8j0" componentListeners="MouseListener"
 				componentValue="3"
@@ -576,66 +562,107 @@
 				componentXPos="450" componentYPos="450">
 				<componentToolTip />
 			</formComponent>
-
 			<formComponent componentType="JSeparator"
-				componentName="s1" componentXPos="50" componentYPos="500">
+				componentName="s1" componentXPos="50" componentYPos="500"></formComponent>
+			<formComponent componentType="JLabel"
+				componentName="l1s"
+				componentXPos="50" componentYPos="500">
+				<componentToolTip>1s</componentToolTip>
 			</formComponent>
-
+			<formComponent componentType="JLabel"
+				componentName="l2s"
+				componentXPos="100" componentYPos="500">
+				<componentToolTip>2s</componentToolTip>
+			</formComponent>
+			<formComponent componentType="JLabel"
+				componentName="l3s"
+				componentXPos="150" componentYPos="500">
+				<componentToolTip>3s</componentToolTip>
+			</formComponent>
+			<formComponent componentType="JLabel"
+				componentName="l4s"
+				componentXPos="200" componentYPos="500">
+				<componentToolTip>4s</componentToolTip>
+			</formComponent>
+			<formComponent componentType="JLabel"
+				componentName="l5s"
+				componentXPos="250" componentYPos="500">
+				<componentToolTip>5s</componentToolTip>
+			</formComponent>
+			<formComponent componentType="JLabel"
+				componentName="l6s"
+				componentXPos="300" componentYPos="500">
+				<componentToolTip>6s</componentToolTip>
+			</formComponent>
+			<formComponent componentType="JLabel"
+				componentName="l7s"
+				componentXPos="350" componentYPos="500">
+				<componentToolTip>7s</componentToolTip>
+			</formComponent>
+			<formComponent componentType="JLabel"
+				componentName="l8s"
+				componentXPos="400" componentYPos="500">
+				<componentToolTip>8s</componentToolTip>
+			</formComponent>
+			<formComponent componentType="JLabel"
+				componentName="l9s"
+				componentXPos="450" componentYPos="500">
+				<componentToolTip>9s</componentToolTip>
+			</formComponent>
 			<formComponent componentType="JTextField"
-				componentName="i8j0" componentListeners="MouseListener"
-				componentValue="3"
-				componentXPos="50" componentYPos="450">
+				componentName="1s" componentListeners="MouseListener"
+				componentValue="1s"
+				componentXPos="50" componentYPos="530">
 				<componentToolTip />
 			</formComponent>
 			<formComponent componentType="JTextField"
-				componentName="i8j1" componentListeners="MouseListener"
-				componentValue="5"
-				componentXPos="100" componentYPos="450">
+				componentName="2s" componentListeners="MouseListener"
+				componentValue="2s"
+				componentXPos="100" componentYPos="530">
 				<componentToolTip />
 			</formComponent>
 			<formComponent componentType="JTextField"
-				componentName="i8j2" componentListeners="MouseListener"
-				componentValue="0"
-				componentXPos="150" componentYPos="450">
+				componentName="3s" componentListeners="MouseListener"
+				componentValue="3s"
+				componentXPos="150" componentYPos="530">
 				<componentToolTip />
 			</formComponent>
 			<formComponent componentType="JTextField"
-				componentName="i8j3" componentListeners="MouseListener"
-				componentValue="0"
-				componentXPos="200" componentYPos="450">
+				componentName="4s" componentListeners="MouseListener"
+				componentValue="4s"
+				componentXPos="200" componentYPos="530">
 				<componentToolTip />
 			</formComponent>
 			<formComponent componentType="JTextField"
-				componentName="i8j4" componentListeners="MouseListener"
-				componentValue="8"
-				componentXPos="250" componentYPos="450">
+				componentName="5s" componentListeners="MouseListener"
+				componentValue="5s"
+				componentXPos="250" componentYPos="530">
 				<componentToolTip />
 			</formComponent>
 			<formComponent componentType="JTextField"
-				componentName="i8j5" componentListeners="MouseListener"
-				componentValue="6"
-				componentXPos="300" componentYPos="450">
+				componentName="6s" componentListeners="MouseListener"
+				componentValue="6s"
+				componentXPos="300" componentYPos="530">
 				<componentToolTip />
 			</formComponent>
 			<formComponent componentType="JTextField"
-				componentName="i8j6" componentListeners="MouseListener"
-				componentValue="0"
-				componentXPos="350" componentYPos="450">
+				componentName="7s" componentListeners="MouseListener"
+				componentValue="7s"
+				componentXPos="350" componentYPos="530">
 				<componentToolTip />
 			</formComponent>
 			<formComponent componentType="JTextField"
-				componentName="i8j7" componentListeners="MouseListener"
-				componentValue="0"
-				componentXPos="400" componentYPos="450">
+				componentName="8s" componentListeners="MouseListener"
+				componentValue="8s"
+				componentXPos="400" componentYPos="530">
 				<componentToolTip />
 			</formComponent>
 			<formComponent componentType="JTextField"
-				componentName="i8j8" componentListeners="MouseListener"
-				componentValue="0"
-				componentXPos="450" componentYPos="450">
+				componentName="9s" componentListeners="MouseListener"
+				componentValue="9s"
+				componentXPos="450" componentYPos="530">
 				<componentToolTip />
 			</formComponent>
-
 		</panel>
 		<panel panelName="SudokuPanel" subPanelName="ButtonPanel">
 			<button buttonName="OK" buttonAction="OK">

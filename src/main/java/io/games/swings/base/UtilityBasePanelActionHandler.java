@@ -313,7 +313,9 @@ public class UtilityBasePanelActionHandler extends JPanel implements
 		} else if (formComponent.getComponentType().equalsIgnoreCase("JLabel")) {
 			jComponent = new JLabel(formComponent.getComponentToolTip()
 					.toString());
-
+			jComponent.setBounds(
+				Integer.parseInt(formComponent.getComponentXPos()),
+				Integer.parseInt(formComponent.getComponentYPos()), 30, 30);
 		} else if (formComponent.getComponentType().equalsIgnoreCase(
 				"JComboBox")) {
 			jComponent = new JComboBox<String>();

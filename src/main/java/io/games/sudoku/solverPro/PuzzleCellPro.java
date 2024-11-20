@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class PuzzleCellPro {
@@ -16,6 +17,10 @@ public class PuzzleCellPro {
     private int row, col, section = -1;
     private List<Integer> possibles;
     private boolean isSolved = false;
+
+    public int getRowGroup() {
+        return row+1;
+    }
 
     public PuzzleCellPro(int i, JComponent cell, int row, int col) {
         index = i;
@@ -42,7 +47,10 @@ public class PuzzleCellPro {
 
     public void setValue(int value) {
         cell.setText(value+"");
+        possibles.clear();
+        possibles.add(value);
         isSolved = true;
+        cell.setToolTipText("i"+row+"j"+col+"["+value+"]");
     }
 
     public int getValue() {
@@ -84,6 +92,10 @@ public class PuzzleCellPro {
             this.cell.setBackground(java.awt.Color.BLUE);
         } else {
             System.out.println("By Value ["+ row + "," + col +"]" + "possibles: " + possibles);
+        }
+
+        if (!isSolved) {
+            cell.setToolTipText("i"+row+"j"+col+"["+possibles.stream().map(x-> x.toString()).collect(Collectors.joining(", "))+"]");
         }
 
         return possibles.size() < possiblesCount;
@@ -160,6 +172,9 @@ public class PuzzleCellPro {
 
         if (!canContinue) {
             System.out.println("By Possibles ["+ row + "," + col +"]" + "possibles: " + possibles);
+        }
+        if (!isSolved) {
+            cell.setToolTipText("i"+row+"j"+col+"["+possibles.stream().map(x-> x.toString()).collect(Collectors.joining(", "))+"]");
         }
         
         return canContinue;

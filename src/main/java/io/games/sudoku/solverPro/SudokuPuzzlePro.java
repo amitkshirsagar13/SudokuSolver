@@ -1,11 +1,15 @@
 package io.games.sudoku.solverPro;
 
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javax.swing.JComponent;
+import javax.swing.JTextField;
 
 import io.games.swings.base.UtilityStatusPanel;
 
@@ -13,8 +17,10 @@ public class SudokuPuzzlePro {
     static Logger log = Logger.getLogger(SudokuPuzzlePro.class.getName());
     private List<PuzzleCellPro> cellList;
     private UtilityStatusPanel statusPanel;
+    private HashMap<String, JComponent> formComponents;
     
     public SudokuPuzzlePro(HashMap<String, JComponent> formComponents, UtilityStatusPanel statusPanel) {
+        this.formComponents = formComponents;
         cellList = new ArrayList<>();
         int i = 0;
         for (int row=0; row<9; row++) {
@@ -68,11 +74,44 @@ public class SudokuPuzzlePro {
             
             if (rs == 2 || rs == 5) {
                 System.out.println("-----------------------------------------");
-
             }
         }
+        setStats();
+        System.out.println("=========================================");
+    }
+    public void setStats() {
         int solvedCount = (int)cellList.stream().filter(p->p.isSolved()).count();
         statusPanel.setProgressStatus((int)((double)solvedCount/81 * 100), "Solved: " + solvedCount+"/81");
-        System.out.println("=========================================");
+        Map<Integer, Map<Integer, Long>> groupByMap = cellList.stream().filter(c -> c.isSolved())
+                .collect(Collectors.groupingBy(PuzzleCellPro::getRowGroup, 
+                         Collectors.groupingBy(PuzzleCellPro::getValue, Collectors.counting())));
+        Map<Integer, Long> countMap = new HashMap<>();
+        groupByMap.values().forEach((group)-> {
+            group.keySet().forEach((key)-> {
+                long existingCount = countMap.getOrDefault((Integer)key, 0l);
+                existingCount += group.get(key);
+                countMap.put((Integer)key, existingCount);
+            });
+        });
+        countMap.forEach((key, value)-> {
+            JTextField textField = (JTextField)this.formComponents.get(key+"s");
+            textField.setText(value+"");
+            if (value == 9) {
+                textField.setBackground(java.awt.Color.GREEN);
+                textField.setFont(new Font("Tahoma", Font.BOLD, 14));
+                textField.setToolTipText("N "+key+" is solved");
+                textField.setHorizontalAlignment(JTextField.CENTER);
+            } else if(value < 3) {
+                textField.setBackground(java.awt.Color.RED);
+                textField.setFont(new Font("Tahoma", Font.BOLD, 14));
+                textField.setToolTipText("N "+key+" is not solved");
+                textField.setHorizontalAlignment(JTextField.CENTER);
+            } else {
+                textField.setBackground(java.awt.Color.YELLOW);
+                textField.setFont(new Font("Tahoma", Font.BOLD, 14));
+                textField.setToolTipText("N "+key+" is near solved");
+                textField.setHorizontalAlignment(JTextField.CENTER);
+            }
+        });
     }
 }
