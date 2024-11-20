@@ -46,6 +46,6 @@ public class MySudokuSolver {
 
 			myApplicationFrame.setSelected("SudokuPanel");
 
-			myApplicationFrame.setExtendedState(myApplicationFrame
-					.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+			// myApplicationFrame.setExtendedState(myApplicationFrame
+					// .getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		}}

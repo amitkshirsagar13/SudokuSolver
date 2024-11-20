@@ -78,7 +78,7 @@ public class UtilityBaseFrame extends JFrame implements ActionListener,
 			}
 		});
 
-		this.setSize(new Dimension(1000, 750));
+		this.setSize(new Dimension(550, 800));
 
 		// _applicationPanel = (JPanel) this.getContentPane();
 		this.setLayout(new BorderLayout());
