@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -18,10 +19,13 @@ import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.Painter;
+import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.Border;
@@ -55,14 +59,33 @@ public class UtilityBaseFrame extends JFrame implements ActionListener,
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
+					// Customize Nimbus colors
 					UIManager.setLookAndFeel(info.getClassName());
-					UIManager.put("nimbusOrange", new Color(40, 225, 40));
+					
+					// Override specific component colors
+					// UIManager.put("Button.background", new Color(100, 149, 237)); // Cornflower blue
+					UIManager.put("Button.foreground", Color.WHITE);
+					UIManager.put("Panel.background", new Color(230, 230, 250)); // Lavender
+					
+					// More granular Nimbus-specific color customization
+					UIManager.put("nimbusBase", new Color(51, 98, 140)); // Base color for many components
+					UIManager.put("nimbusAlertYellow", new Color(255, 220, 35)); // Warning color
+					UIManager.put("nimbusDisabledText", Color.GRAY); // Disabled text color
+					
+					// Advanced color customization for specific components
+					// UIManager.put("Button[Enabled].backgroundPainter", new Painter<JComponent>() {
+					// 	@Override
+					// 	public void paint(Graphics2D g, JComponent c, int width, int height) {
+					// 		g.setColor(new Color(70, 130, 180)); // Steel blue
+					// 		g.fillRect(0, 0, width, height);
+					// 	}
+					// });
+					
+					UIManager.put("nimbusOrange", new Color(0, 0, 255));
 					UIManager.put("Table.background", Color.WHITE);
 					UIManager.put("Table.alternateRowColor", Color.BLUE);
-					UIManager.put("nimbusSelectionBackground", new Color(220,
-							220, 220));
-					UIManager.put("List[Selected].textBackground", new Color(
-							220, 220, 220));
+					UIManager.put("nimbusSelectionBackground", new Color(220, 220, 220));
+					UIManager.put("List[Selected].textBackground", new Color(220, 220, 220));
 					break;
 				}
 			}
